@@ -11,9 +11,9 @@ RUN apt-get -y update && \
   
   
 
-COPY start.sh /
-COPY supervisord.conf /
-COPY redis.conf /
+RUN COPY start.sh /
+RUN COPY supervisord.conf /
+RUN COPY redis.conf /
 RUN chmod a+x /start.sh
 VOLUME /data
 WORKDIR /
