@@ -1,11 +1,9 @@
 FROM redis:3.2
 
 RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
-RUN apt-get -y update && apt-get install -y  software-properties-common
-RUN  apt-add-repository ppa:brightbox/ruby-ng && apt-get update && apt-get install ruby2.2 ruby2.2-dev 
-
-
-RUN apt-get install -y --no-install-recommends --no-install-suggests  supervisor  wget rubygems && \
+RUN curl -L https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable
+RUN source ~/.rvm/scripts/rvm && rvm requirements &&rvm instail 2.3.1 && rvm use 2.3.1 --default
+RUN apt-get install -y --no-install-recommends --no-install-suggests  supervisor  wget  && \
   rm -rf /var/lib/apt/lists/* && \
   gem install redis
 
