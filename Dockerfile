@@ -1,7 +1,7 @@
 FROM redis:3.2
 
 RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
-RUN apt-get -y update && apt-get install -y python-software-properties
+RUN apt-get -y update && apt-get install -y  software-properties-common
 RUN apt-add-repository ppa:brightbox/ruby-ng && apt-get update && apt-get install ruby2.2 ruby2.2-dev rubygems
 
 
