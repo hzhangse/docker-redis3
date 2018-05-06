@@ -1,0 +1,47 @@
+version: '2.2'
+services:
+  redis-node1:
+    image:  registry.cn-hangzhou.aliyuncs.com/rainbow954/redis3.2
+    container_name: redis-node1
+    networks:
+       esnet:
+        ipv4_address: 172.19.0.40
+        
+  redis-node2:
+    image:  registry.cn-hangzhou.aliyuncs.com/rainbow954/redis3.2
+    container_name: redis-node2
+    networks:
+       esnet:
+         ipv4_address: 172.19.0.41
+  
+  redis-node3:
+    image:  registry.cn-hangzhou.aliyuncs.com/rainbow954/redis3.2
+    container_name: redis-node3   
+    networks:
+       esnet:
+         ipv4_address: 172.19.0.42  
+         
+  redis-node4:
+    image:  registry.cn-hangzhou.aliyuncs.com/rainbow954/redis3.2
+    container_name: redis-node4
+    networks:
+       esnet:
+        ipv4_address: 172.19.0.43
+        
+  redis-node5:
+    image:  registry.cn-hangzhou.aliyuncs.com/rainbow954/redis3.2
+    container_name: redis-node5
+    networks:
+       esnet:
+         ipv4_address: 172.19.0.44
+  
+  redis-node6:
+    image:  registry.cn-hangzhou.aliyuncs.com/rainbow954/redis3.2
+    container_name: redis-node6   
+    networks:
+       esnet:
+         ipv4_address: 172.19.0.45  
+networks:
+  esnet:
+    external:
+      name: shadownet
