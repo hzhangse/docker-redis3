@@ -7,13 +7,13 @@ RUN apt-get -y update && \
   rm -rf /var/lib/apt/lists/* && \
   REDIS_TRIB_PATH=/usr/local/bin/redis-trib && \
   wget https://raw.githubusercontent.com/antirez/redis/3.2/src/redis-trib.rb -O $REDIS_TRIB_PATH && \
-  chmod +x $REDIS_TRIB_PATH && \
+  chmod +x $REDIS_TRIB_PATH 
   
   
 
-RUN COPY start.sh /
-RUN COPY supervisord.conf /
-RUN COPY redis.conf /
+COPY start.sh /
+COPY supervisord.conf /
+COPY redis.conf /
 RUN chmod a+x /start.sh
 VOLUME /data
 WORKDIR /
