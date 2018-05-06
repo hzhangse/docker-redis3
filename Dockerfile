@@ -1,16 +1,15 @@
 FROM redis:3.2
 
 RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
-RUN apt-get install -y --no-install-recommends --no-install-suggests  supervisor  wget curl
-RUN curl -L https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash -s stable
-RUN source ~/.rvm/scripts/rvm && rvm requirements &&rvm instail 2.3.1 && rvm use 2.3.1 --default
-RUN rm -rf /var/lib/apt/lists/* && \
-  gem install redis
 
-
-
-RUN wget https://raw.githubusercontent.com/antirez/redis/3.2/src/redis-trib.rb -O /redis-trib.rb && \
-  chmod +x /redis-trib.rb
+RUN apt-get -y update && \
+  apt-get install -y --no-install-recommends --no-install-suggests ruby-redis supervisor wget curl && \
+  rm -rf /var/lib/apt/lists/* && \
+  REDIS_TRIB_PATH=/usr/local/bin/redis-trib && \
+  wget https://raw.githubusercontent.com/antirez/redis/3.2/src/redis-trib.rb -O $REDIS_TRIB_PATH && \
+  chmod +x $REDIS_TRIB_PATH && \
+  
+  
 
 COPY start.sh /
 COPY supervisord.conf /
